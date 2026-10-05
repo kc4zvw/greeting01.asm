@@ -6,30 +6,32 @@
 ;   read  = 0    write = 1    exit = 60
 
 section .bss
-    buf     resb 4096            ; stdin lands here
+	buf     resb 4096            ; stdin lands here
 
 section .text
-    global _start
+	global _start
 
 _start:
-    ; read(0, buf, 4096) -> rax = bytes read
-    mov     rax, 0
-    mov     rdi, 0
-    mov     rsi, buf
-    mov     rdx, 4096
-    syscall
+	; read(0, buf, 4096) -> rax = bytes read
+	mov     rax, 0
+	mov     rdi, 0
+	mov     rsi, buf
+	mov     rdx, 4096
+	syscall
 
     ; TODO: process the input in buf. rax holds the byte count.
     ;       Leave the bytes to print in buf and their length in rdx.
-    mov     rdx, rax
+	mov     rdx, rax
 
-    ; write(1, buf, rdx)
-    mov     rax, 1
-    mov     rdi, 1
-    mov     rsi, buf
-    syscall
+	; write(1, buf, rdx)
+	mov     rax, 1
+	mov     rdi, 1
+	mov     rsi, buf
+	syscall
 
-    ; exit(0)
-    mov     rax, 60
-    xor     rdi, rdi
-    syscall
+	; exit(0)
+	mov     rax, 60
+	xor     rdi, rdi
+	syscall
+	
+;; ** EOF **
